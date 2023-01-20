@@ -11,7 +11,19 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     /* { path: '/', redirect: '/teams' }, */
-    { path: '/teams', component: TeamsList, alias: '/' },
+    {
+      name: 'teams',
+      path: '/teams',
+      component: TeamsList,
+      children: [
+        {
+          name: 'team-member',
+          path: ':teamId',
+          component: TeamMembers,
+          props: true,
+        },
+      ],
+    } /* teams/t1 */,
     /* our-domain/teams => TeamsList */
     /* alias: '/' de gan trang truy cap vao 1 trang con trong page */
     { path: '/users', component: UsersList },
