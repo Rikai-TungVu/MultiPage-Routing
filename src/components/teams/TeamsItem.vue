@@ -2,15 +2,21 @@
   <li>
     <h3>{{ name }}</h3>
     <div class="team-members">{{ memberCount }} Members</div>
-    <RouterLink :to="'/teams/' + id">View Member</RouterLink>
+    <!-- <RouterLink :to="'/teams/' + id">View Member</RouterLink> -->
+    <!-- line 5 vs line 7 are the same way to call ID team -->
+    <RouterLink :to="teamMembersLink">View Member</RouterLink>
     <!-- add link follow id to each group team-->
-    <!-- <a href="#">View Members</a> -->
   </li>
 </template>
 
 <script>
 export default {
   props: ['id', 'name', 'memberCount'],
+  computed: {
+    teamMembersLink() {
+      return '/teams/' + this.id;
+    },
+  },
 };
 </script>
 
