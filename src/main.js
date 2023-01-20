@@ -5,14 +5,20 @@ import App from './App.vue';
 import TeamsList from './components/teams/TeamsList.vue';
 import UsersList from './components/users/UsersList.vue';
 import TeamMembers from './components/teams/TeamMembers.vue';
+import NotFound from './components/nav/NotFound.vue';
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/teams', component: TeamsList },
+    /* { path: '/', redirect: '/teams' }, */
+    { path: '/teams', component: TeamsList, alias: '/' },
     /* our-domain/teams => TeamsList */
+    /* alias: '/' de gan trang truy cap vao 1 trang con trong page */
     { path: '/users', component: UsersList },
-    { path: '/teams/:teamId', component: TeamMembers },
+    { path: '/teams/:teamId', component: TeamMembers, props: true },
+    /* Set props true to apply teamid to other component */
+    { path: '/:notFound(.*)', component: NotFound },
+    /* quay lai /teams khi link sai */
   ],
   linkActiveClass: 'active',
 });
